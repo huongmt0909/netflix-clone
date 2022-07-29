@@ -1,1 +1,180 @@
-@import '../../assets/globalStyles/base.scss';
+@import "../../assets/globalStyles/base.scss";
+
+.header {
+    padding-left: 3rem;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 67px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    z-index: 99;
+    &_logo {
+        width: 143px;
+        height: 60px;
+    }
+    &_left,
+    &_right {
+        display: flex;
+        align-items: center;
+        margin: 0 5rem 0 0;
+        padding: 0;
+        list-style: none;
+        li {
+            position: relative;
+            a {
+                color: $color-1;
+                font-weight: 500;
+                font-size: 1.3rem;
+                color: #ddd;
+                margin-right: 2rem;
+                &:hover {
+                    color: $color-2;
+                }
+            }
+        }
+    }
+    &_search_icon {
+        position: absolute;
+        color: $color-3;
+        font-size: 2rem;
+        cursor: pointer;
+        transform: translateX(0.8rem) translateY(1rem);
+    }
+    &_notify {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        i {
+            color: $color-3;
+            padding-right: 2rem;
+            font-size: 2rem;
+            margin-top: 4px;
+        }
+    }
+    &_search {
+        font-size: 1.4rem;
+        border: none;
+        outline: none;
+        width: 0px;
+        padding: 10px;
+        padding-right: 2rem;
+        background: $color-8;
+        border: 1px solid $color-3;
+        transition: width 0.5s;
+        opacity: 0;
+        cursor: pointer;
+        padding-left: 40px;
+        color: $color-3;
+        &:focus {
+            width: 22rem;
+            margin-right: 12px;
+            opacity: 1;
+            cursor: text;
+        }
+    }
+    &_user {
+        display: flex;
+        align-items: center;
+        &_logo {
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #c9c74e;
+            height: 3rem;
+            width: 3rem;
+            margin-right: 0.5rem;
+            position: relative;
+        }
+
+        i {
+            color: $color-3;
+            font-size: 1.6rem;
+        }
+        .header_user_logo:hover .header_user_dropdown {
+            display: block;
+        }
+        &_dropdown {
+            position: absolute;
+            display: none;
+            top: 46px;
+            right: -20px;
+            border: 1px solid #494949;
+            width: 15rem;
+            background-color: rgba(0, 0, 0, 0.9);
+            .user_dropdown_list,
+            .user_control_dropdown_list {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                &_item {
+                    cursor: pointer;
+                    p {
+                        margin: 0;
+                        color: $color-3;
+                        font-size: 1rem;
+                    }
+                }
+            }
+            .user_dropdown_list {
+                padding-left: 1rem;
+                padding-top: 18px;
+                &_item {
+                    display: flex;
+                    align-items: flex-end;
+                    margin-bottom: 18px;
+                    height: 40px;
+                    p {
+                        margin-left: 12px;
+                        &:hover {
+                            border-bottom: 1px solid $color-3;
+                        }
+                    }
+                    &:nth-child(1) {
+                        div {
+                            height: 3rem;
+                            width: 3rem;
+                            border-radius: 5px;
+                            background-color: $color-5;
+                        }
+                    }
+                    &:nth-child(2) {
+                        div {
+                            height: 3rem;
+                            width: 3rem;
+                            border-radius: 5px;
+                            background-color: $color-6;
+                        }
+                    }
+                    &:nth-child(3) {
+                        div {
+                            height: 3rem;
+                            width: 3rem;
+                            border-radius: 5px;
+                            background-color: $color-7;
+                        }
+                    }
+                }
+            }
+            .user_control_dropdown_list {
+                padding: 18px 0 0 10px;
+                border-top: 2px solid $color-4;
+                &_item {
+                    margin: 12px 0;
+                    padding-bottom: 10px;
+                }
+            }
+            &:after {
+                position: absolute;
+                display: block;
+                content: "";
+                width: 100%;
+                height: 20px;
+                top: -20px;
+            }
+        }
+    }
+}

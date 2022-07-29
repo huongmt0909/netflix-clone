@@ -1,0 +1,18 @@
+@import '../../assets/globalStyles/base.scss';
+
+.footer{
+    font-size: 1.8rem;
+    color: $color-3;
+    text-align: center;
+    background-color: #111;
+    padding-top: 15rem;
+    padding-bottom: 4rem;
+    grid-column: 1 / 13;
+    text-align: center;
+    a{
+        color: rgb(236, 110, 82);
+        &:hover{
+            color: orange;
+        }
+    }
+}

@@ -1,0 +1,47 @@
+@import "../../assets/globalStyles/base.scss";
+.search {
+    padding: 15rem 4rem 10rem 4rem;
+    &_list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        li {
+            width: 267px;
+            height: 150px;
+            margin: 0 4px 7rem 4px;
+            transition: all 0.3s;
+            cursor: pointer;
+            img {
+                width: 100%;
+                height: 150px;
+                border-radius: 4px;
+            }
+            &:hover {
+                transform: scale(1.25);
+            }
+        }
+    }
+    &_empty {
+        div {
+            display: flex;
+            justify-content: center;
+            p {
+                color: $color-3;
+                text-align: center;
+                display: inline-block;
+                font-size: 1.4rem;
+            }
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            li{
+                color: $color-3;
+                font-size: 1.4rem;
+                margin: 4px 0;
+            }
+        }
+    }
+}
