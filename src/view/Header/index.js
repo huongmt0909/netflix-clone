@@ -1,25 +1,56 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { FaSearch, FaRegBell, FaCaretDown } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
 
+import { authAction } from '../../redux/slice/authSlice'
 import './style.scss'
 import Logo from '../../assets/images/logo.png'
 import { useEffect, useState } from 'react';
+import NoBody from '../../assets/images/no-body.jpg'
+import { loginSelector } from '../../redux/selector'
 
 function Header() {
     const [querySearch, setQuerySearch] = useState('')
     const navigate = useNavigate()
+    const loginList = useSelector(loginSelector)
+    const dispatch = useDispatch();
+
+    const handleLogoutClick = () => {
+        dispatch(authAction.logout());
+    };
 
     useEffect(() => {
         if (querySearch.trim().length > 0) {
             navigate(`/search?q=${querySearch}`)
         }
-        else{
+        else {
             navigate('/')
         }
     }, [querySearch])
 
+
+    const [hiddenHeader, setHiddenHeader] = useState(false);
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY >= 160) {
+                setHiddenHeader(true);
+            } else {
+                setHiddenHeader(false);
+            }
+        };
+        window.addEventListener("scroll", handleScroll);
+        //cleanUp function
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
     return (
-        <div className="header">
+        <div className="header" 
+            style={
+                hiddenHeader ? {backgroundColor:'#111'} : {backgroundColor:'transparent'}
+            }
+        >
             <ul className='header_left'>
                 <li>
                     <Link to='/'>
@@ -78,33 +109,36 @@ function Header() {
                     <div className='header_user'>
                         <div className='header_user_logo'>
                             <div className="header_user_dropdown">
-                                <ul className='user_dropdown_list'>
-                                    <li className='user_dropdown_list_item'>
-                                        <div></div>
-                                        <p> Andres</p>
-                                    </li>
-                                    <li className='user_dropdown_list_item'>
-                                        <div></div>
-                                        <p> Tony</p>
-                                    </li>
-                                    <li className='user_dropdown_list_item'>
-                                        <div></div>
-                                        <p> Luis</p>
-                                    </li>
-                                </ul>
+                                {
+                                    loginList.isLoggedIn &&
+                                    <ul className='user_dropdown_list'>
+                                        <li className='user_dropdown_list_item'>
+                                            <img src={NoBody} alt="photo" />
+                                            <p>{loginList.currentUser.user.username}</p>
+                                        </li>
+                                    </ul>
+                                }
                                 <ul className='user_control_dropdown_list'>
-                                    <li className='user_control_dropdown_list_item'>
-                                        <p>Account</p>
-                                    </li>
+                                    {
+                                        loginList.isLoggedIn === false &&
+                                        <li className='user_control_dropdown_list_item'>
+                                            <Link to='/login'>
+                                                Login
+                                            </Link>
+                                        </li>
+                                    }
                                     <li className='user_control_dropdown_list_item'>
                                         <p>Manager Profile</p>
                                     </li>
                                     <li className='user_control_dropdown_list_item'>
                                         <p>Help Center</p>
                                     </li>
-                                    <li className='user_control_dropdown_list_item'>
-                                        <p>Sign out of Netflix</p>
-                                    </li>
+                                    {
+                                        loginList.isLoggedIn &&
+                                        <li className='user_control_dropdown_list_item' onClick={handleLogoutClick}>
+                                            <p>Sign out of Netflix</p>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         </div>
@@ -112,7 +146,7 @@ function Header() {
                     </div>
                 </li>
             </ul>
-        </div>
+        </div >
     );
 }
 

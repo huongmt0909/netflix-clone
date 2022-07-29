@@ -2,11 +2,11 @@
 
 .header {
     padding-left: 3rem;
-    margin: 10px 0;
+    margin: 0 ;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 67px;
+    height: 80px;
     position: fixed;
     top: 0;
     left: 0;
@@ -32,6 +32,8 @@
                 font-size: 1.3rem;
                 color: #ddd;
                 margin-right: 2rem;
+                width: 100%;
+                display: block;
                 &:hover {
                     color: $color-2;
                 }
@@ -127,35 +129,17 @@
                     align-items: flex-end;
                     margin-bottom: 18px;
                     height: 40px;
-                    p {
+                    margin-right: 12px;
+                    a {
                         margin-left: 12px;
                         &:hover {
                             border-bottom: 1px solid $color-3;
                         }
                     }
-                    &:nth-child(1) {
-                        div {
-                            height: 3rem;
-                            width: 3rem;
-                            border-radius: 5px;
-                            background-color: $color-5;
-                        }
-                    }
-                    &:nth-child(2) {
-                        div {
-                            height: 3rem;
-                            width: 3rem;
-                            border-radius: 5px;
-                            background-color: $color-6;
-                        }
-                    }
-                    &:nth-child(3) {
-                        div {
-                            height: 3rem;
-                            width: 3rem;
-                            border-radius: 5px;
-                            background-color: $color-7;
-                        }
+                    img{
+                        width: 30px;
+                        height: 30px;
+                        margin-right: 4px;
                     }
                 }
             }

@@ -9,7 +9,19 @@ function Modal({
 }) {
     return (
         <>
-            <div className='overlay' onClick={hidden}></div>
+
+            <div className='overlay' onClick={hidden}
+
+                style={
+                    showModal ? {
+                        top: '0%',
+                        opacity: '1'
+                    } : {
+                        top: '-100%',
+                        opacity: 0
+                    }
+                }
+            ></div>
             {
                 data &&
                 <div className="modal"
@@ -21,7 +33,7 @@ function Modal({
                         } : {
                             backgroundSize: 'cover',
                             backgroundImage: `url('https://image.tmdb.org/t/p/original//aM9riYvt5kPkX6ZrNNPL48ScP6d.jpg')`,
-                            top: '0%',
+                            top: '-100%',
                             opacity: 0
 
                         }
@@ -30,7 +42,7 @@ function Modal({
                         <h1 className="modal_title">{data.name || data.original_title}</h1>
                         <p className="modal_info">
                             <span>Rating: {data.vote_average * 10}% </span>
-                            Release date: {data.first_air_date} Runtime: {data.runtime || data.episode_run_time}m
+                            Release date: {data.first_air_date} Runtime: {data.runtime || data.episode_run_time}
                         </p>
                         <p className="modal_episode">
                             {data.number_of_episodes ? ' Episodes: ' + data.number_of_episodes : ''}

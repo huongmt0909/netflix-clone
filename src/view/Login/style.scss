@@ -1,0 +1,82 @@
+@import "../../assets/globalStyles/base.scss";
+
+.login {
+    padding-top: 18rem;
+    display: flex;
+    justify-content: center;
+    height: 60vh;
+    form {
+        background-color: $color-4;
+        width: 350px;
+        padding: 12px;
+        h1 {
+            text-align: center;
+            color: $color-3;
+            display: block;
+            border-bottom: 1px solid $color-2;
+            margin-bottom: 42px;
+        }
+    }
+    .form_group {
+        margin-bottom: 12px;
+        label {
+            display: block;
+            color: $color-3;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+    }
+    .form_input {
+        display: flex;
+        width: 100%;
+        input {
+            flex: 1;
+            height: 35px;
+            border: 1px solid $color-3;
+            outline: none;
+            font-size: 1.4rem;
+            font-weight: 600;
+          
+        }
+        span{
+            width: 35px;
+            background-color: $color-1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            i{
+                font-size: 2.2rem;
+            }
+            &:hover{
+                background-color: $color-2;
+            }
+        }
+    }
+}
+.form_control {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 42px;
+}
+.btn_login {
+    width: 120px;
+    height: 35px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    background-color: $color-13;
+    color: $color-3;
+    cursor: pointer;
+    &:hover {
+        background-color: $color-12;
+    }
+}
+
+.form_error {
+    color: $color-6;
+    font-size: 1.6rem;
+}

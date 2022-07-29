@@ -4,6 +4,8 @@ import './App.css';
 import Header from './view/Header';
 import routeAdmin from './routes/index'
 import Footer from "./view/Footer";
+import PublicRoute from "./routes/publicRoute";
+import Login from "./view/Login";
 
 function App() {
   document.title = 'Netflix Clone'
@@ -20,8 +22,11 @@ function App() {
             />
           ))}
         </Route>
+        <Route element={<PublicRoute />}>
+          <Route path='/login' element={<Login />} />
+        </Route>
       </Routes>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
