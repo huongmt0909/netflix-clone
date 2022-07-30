@@ -24,12 +24,12 @@ function Login() {
         },
         validationSchema: Yup.object({
             value: Yup.string()
-                .required("Trường này không được để trống!"),
+                .required("This field cannot be left blank!"),
             password: Yup.string()
-                .required("Chưa nhập mật khẩu!")
+                .required("No password entered!")
                 .matches(
                     /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-                    "Mật khẩu tối thiểu 8 ký tự, ít nhất một chữ cái và một số!"
+                    "Password minimum 8 characters, at least one letter and one number!"
                 ),
         }),
         onSubmit: (values) => {
