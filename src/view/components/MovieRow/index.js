@@ -1,25 +1,28 @@
+import useWindowDimensions from '../../../hooks/useWindowDimensions'
 import React, { Component } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 
 import './style.scss'
-
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 
+const MovieRow = ({ title, movies, handleSelectMovie }) => {
+    const [windowDimensions] = useWindowDimensions()
+    const { width } = windowDimensions
 
-const DisplayMovieRow = ({ title, isNetflixMovies, movies, selectMovieHandler }) => {
-    const width = 1378
     return (
         <>
-            <h1 className='movieShowcase__heading'>{title}</h1>
+            <h1 className='movie-row_heading'>{title}</h1>
             <Swiper
-                className='movieShowcase__container'
+                className='movie-row_container'
                 navigation={true}
-                grabCursor={false}
-                draggable={false}
                 loop={true}
                 loopAdditionalSlides={
-                    width >= 1378 ? 4 : width >= 998 ? 3 : width >= 625 ? 2 : 2
+                    width >= 1378 ? 5 : width >= 998 ? 3 : width >= 625 ? 2 : 2
                 }
                 breakpoints={{
                     1378: {
@@ -43,35 +46,28 @@ const DisplayMovieRow = ({ title, isNetflixMovies, movies, selectMovieHandler })
                 preventClicks={true}
                 scrollbar={{ draggable: false, hide: true }}
                 slideToClickedSlide={false}
-                pagination={{ clickable: true }}
+                pagination={true}
             >
                 {movies &&
-                    movies.map((movie, idx) => {
-                        let movieImageUrl = isNetflixMovies
-                            ? `https://image.tmdb.org/t/p/w500//mGVrXeIjyecj6TKmwPVpHlscEmw.jpg`
-                            : `https://image.tmdb.org/t/p/w500//mGVrXeIjyecj6TKmwPVpHlscEmw.jpg`
+                    movies.map((movie) => {
 
-                        if (movie.poster_path && movie.backdrop_path !== null) {
-                            return (
-                                <SwiperSlide
-                                    onClick={() => selectMovieHandler(movie)}
-                                    key={idx}
-                                    className={
-                                        'movieShowcase__container--movie' +
-                                        (isNetflixMovies ? '__netflix' : '')
-                                    }
-                                >
-                                    <img
-                                        src={movieImageUrl}
-                                        className='movieShowcase__container--movie-image'
-                                    />
-                                </SwiperSlide>
-                            )
-                        }
+                        return (
+                            <SwiperSlide
+                                onClick={() => handleSelectMovie(movie)}
+                                key={movie.id}
+                                className={"movie-row_item"}
+
+                            >
+                                <img
+                                    src={movie.image}
+                                    className='movie-row_image'
+                                />
+                            </SwiperSlide>
+                        )
                     })}
             </Swiper>
         </>
     )
 }
 
-export default DisplayMovieRow
+export default MovieRow

@@ -84,7 +84,6 @@
         align-items: center;
         &_logo {
             border-radius: 5px;
-            cursor: pointer;
             background-color: #c9c74e;
             height: 3rem;
             width: 3rem;
@@ -113,11 +112,10 @@
                 padding: 0;
                 list-style: none;
                 &_item {
-                    cursor: pointer;
                     p {
                         margin: 0;
                         color: $color-3;
-                        font-size: 1rem;
+                        font-size: 1.3rem;
                     }
                 }
             }
@@ -149,6 +147,12 @@
                 &_item {
                     margin: 12px 0;
                     padding-bottom: 10px;
+                    p{
+                        &:hover{
+                            color: $color-4;
+                            cursor: pointer;
+                        }
+                    }
                 }
             }
             &:after {

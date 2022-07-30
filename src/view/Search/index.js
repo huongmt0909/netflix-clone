@@ -16,8 +16,11 @@ function Search() {
     const [dataSelect, setDataSelect] = useState()
 
     const handleSetModal = (item) => {
-        console.log(item);
         setDataSelect(item)
+        setShowModal(!showModal)
+    }
+
+    const handleHiddenModal = () => {
         setShowModal(!showModal)
     }
 
@@ -25,19 +28,18 @@ function Search() {
         if (q.trim().length > 0) {
             const api = async () => {
                 const res = await search(q)
-                setSearchData(res.results);
+                setSearchData(res.data);
             }
             api()
         }
     }, [q])
-
     return (
         <div className="search">
             <ul className='search_list'>
                 {
                     searchData.map(item => (
                         <li key={item.id} onClick={() => handleSetModal(item)}>
-                            <img src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`} alt="photo" />
+                            <img src={`https://image.tmdb.org/t/p/w500${item.image}`} alt="photo" />
                         </li>
                     ))
                 }
@@ -68,7 +70,7 @@ function Search() {
                 </div>
             }
             <Modal
-                hidden={handleSetModal}
+                hidden={handleHiddenModal}
                 data={dataSelect}
                 showModal={showModal}
             />

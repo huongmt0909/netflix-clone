@@ -1,6 +1,7 @@
 import { all, put, takeEvery } from "redux-saga/effects";
 import authSaga from "./authSaga";
+import movieSaga from "./movieSaga";
 
 export default function* rootSaga() {
-  yield all([authSaga()]);
+  yield all([authSaga(), movieSaga()]);
 }

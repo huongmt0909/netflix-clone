@@ -46,9 +46,9 @@ function Header() {
     }, []);
 
     return (
-        <div className="header" 
+        <div className="header"
             style={
-                hiddenHeader ? {backgroundColor:'#111'} : {backgroundColor:'transparent'}
+                hiddenHeader ? { backgroundColor: '#111' } : { backgroundColor: 'transparent' }
             }
         >
             <ul className='header_left'>
@@ -124,6 +124,14 @@ function Header() {
                                         <li className='user_control_dropdown_list_item'>
                                             <Link to='/login'>
                                                 Login
+                                            </Link>
+                                        </li>
+                                    }
+                                    {
+                                        loginList.isLoggedIn &&
+                                        <li className='user_control_dropdown_list_item'>
+                                            <Link to='/admin'>
+                                                Admin
                                             </Link>
                                         </li>
                                     }
