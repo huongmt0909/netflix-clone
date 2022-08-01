@@ -1,7 +1,7 @@
 import { fork, select, take, call, put, all, takeEvery } from "redux-saga/effects";
 import { movieActions } from "../slice/movieSlice";
 import { getAll, create, update, remove } from '../../services/movieServices'
-import { currentPageSelector, movieSelector } from '../selector'
+import { currentPageSelector, movieSelector, totalPage } from '../selector'
 
 
 function* handleGetMovie(action) {
@@ -77,13 +77,19 @@ function* handleRemoveMovie(action) {
             if (res.data.status === true) {
                 yield put(movieActions.removeMovieSuccess(action.payload.id))
                 action.payload.ShowToast('Remove Movie success!', 'success')
+
                 let currentPage = yield select(currentPageSelector);
+                let totalPageSelector = yield select(totalPage);
+
                 const movieList = yield select(movieSelector)
                 if (movieList.length === 0) {
                     currentPage = currentPage - 1
+                    totalPageSelector = totalPageSelector - 1
                 }
-
+                yield put(movieActions.setTotalPage(totalPageSelector))
+                yield put(movieActions.setCurrentPage(currentPage))
                 yield put(movieActions.getMovie({ page: currentPage }))
+
             }
             else {
                 yield put(movieActions.removeMovieFailed())
@@ -94,6 +100,7 @@ function* handleRemoveMovie(action) {
         yield put(movieActions.removeMovieFailed())
         action.payload.ShowToast('Delete movie failed, please try again later!', 'error')
     }
+
 }
 
 function* WaitDispatchGetMovie() {

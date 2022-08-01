@@ -130,7 +130,7 @@ function Header() {
                                     {
                                         loginList.isLoggedIn &&
                                         <li className='user_control_dropdown_list_item'>
-                                            <Link to='/admin'>
+                                            <Link to='/admin?page=1'>
                                                 Admin
                                             </Link>
                                         </li>

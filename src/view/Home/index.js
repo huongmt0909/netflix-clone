@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import './style.scss'
 import MovieRow from '../components/MovieRow'
-import Modal from "../components/Modal";
+import ModalDetail from "../components/ModalDetail";
 
 function Home() {
 
@@ -52,7 +52,7 @@ function Home() {
                 movies={data}
                 handleSelectMovie={handleSetModal}
             />
-            <Modal
+            <ModalDetail
                 hidden={handleHiddenModal}
                 data={dataSelect}
                 showModal={showModal}

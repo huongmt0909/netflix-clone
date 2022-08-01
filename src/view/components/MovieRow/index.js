@@ -22,7 +22,7 @@ const MovieRow = ({ title, movies, handleSelectMovie }) => {
                 navigation={true}
                 loop={true}
                 loopAdditionalSlides={
-                    width >= 1378 ? 5 : width >= 998 ? 3 : width >= 625 ? 2 : 2
+                    width >= 1378 ? 4 : width >= 998 ? 3 : width >= 625 ? 2 : 2
                 }
                 breakpoints={{
                     1378: {

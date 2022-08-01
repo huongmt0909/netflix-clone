@@ -2,7 +2,7 @@ import { FaPlay, FaPlus } from "react-icons/fa";
 
 import './style.scss'
 
-function Modal({
+function ModalDetail({
     hidden,
     data,
     showModal
@@ -40,11 +40,10 @@ function Modal({
                     data &&
                     <div className='modal_container'>
                         <h1 className="modal_title">{data.title}</h1>
-                        {/* <p className="modal_info">
-                            <span>Rating: {data.vote_average * 10}% </span>
-                            Release date: {data.first_air_date} Runtime: {data.runtime || data.episode_run_time}
+                        <p className="modal_info">
+                            Premiere date: {data.date}
                         </p>
-                        <p className="modal_episode">
+                        {/* <p className="modal_episode">
                             {data.number_of_episodes ? ' Episodes: ' + data.number_of_episodes : ''}
                             {data.number_of_seasons ? ' Seasons: ' + data.number_of_seasons : ''}
                         </p> */}
@@ -64,4 +63,4 @@ function Modal({
     );
 }
 
-export default Modal;
+export default ModalDetail;

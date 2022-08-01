@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { FaPlay, FaPlus, FaVolumeMute, FaVolumeUp } from "react-icons/fa";
 import ReactPlayer from 'react-player'
 
@@ -6,7 +6,6 @@ import './style.scss'
 
 function Navigation() {
     const [sound, setSound] = useState(true)
-    const videoRef = useRef()
 
     const handleSetSoundVideo = () => {
         setSound(sound ? false : true)

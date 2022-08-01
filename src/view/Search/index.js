@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom'
 import './style.scss'
 import useDebounce from '../../hooks/useDebounce'
 import { search } from '../../services/searchService'
-import Modal from '../components/Modal'
+import ModalDetail from '../components/ModalDetail'
 
 function Search() {
     const location = useLocation()
@@ -69,7 +69,7 @@ function Search() {
                     </div>
                 </div>
             }
-            <Modal
+            <ModalDetail
                 hidden={handleHiddenModal}
                 data={dataSelect}
                 showModal={showModal}

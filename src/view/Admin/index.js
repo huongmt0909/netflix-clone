@@ -2,6 +2,7 @@ import { FaPlus, FaRegEye, FaEdit, FaTrashAlt } from "react-icons/fa";
 import Pagination from '@mui/material/Pagination';
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import './style.scss'
 import { movieActions } from '../../redux/slice/movieSlice'
@@ -12,12 +13,17 @@ import "react-toastify/dist/ReactToastify.css";
 
 function Admin() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const location = useLocation()
+    const query = new URLSearchParams(location.search)
+    const qPage = query.get("page")
+
     const userSelector = useSelector(loginSelector)
     const movieList = useSelector(movieSelector)
     const totalPageSelector = useSelector(totalPage)
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState(parseInt(qPage))
     const pageSelector = useSelector(currentPageSelector)
-
 
     const [isShowModal, setShowModal] = useState(false)
     const [movieSelect, setMovieSelect] = useState(null)
@@ -60,6 +66,7 @@ function Admin() {
 
     const handleChangePaginate = (event, pageNumber) => {
         setCurrentPage(pageNumber)
+        navigate(`/admin?page=${pageNumber}`)
         const formData = {
             page: pageNumber,
         }
@@ -76,6 +83,7 @@ function Admin() {
 
     useEffect(() => {
         setCurrentPage(parseInt(pageSelector))
+        navigate(`/admin?page=${parseInt(pageSelector)}`)
     }, [pageSelector])
 
     return (

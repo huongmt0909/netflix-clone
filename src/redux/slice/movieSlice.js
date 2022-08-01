@@ -61,6 +61,12 @@ const movieSlice = createSlice({
         removeMovieFailed: (state) => {
             state.isFetching = false
             state.error = true
+        },
+        setCurrentPage: (state, action) =>{
+            state.currentPage = action.payload
+        },
+        setTotalPage: (state, action) =>{
+            state.totalPage = action.payload
         }
     },
 });
