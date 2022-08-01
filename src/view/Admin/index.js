@@ -22,6 +22,7 @@ function Admin() {
     const userSelector = useSelector(loginSelector)
     const movieList = useSelector(movieSelector)
     const totalPageSelector = useSelector(totalPage)
+
     const [currentPage, setCurrentPage] = useState(parseInt(qPage))
     const pageSelector = useSelector(currentPageSelector)
 
@@ -81,9 +82,10 @@ function Admin() {
         dispatch(movieActions.getMovie(formData));
     }, [userSelector.isLoggedIn]);
 
+
     useEffect(() => {
         setCurrentPage(parseInt(pageSelector))
-        navigate(`/admin?page=${parseInt(pageSelector)}`)
+        navigate(`/admin?page=${pageSelector}`)
     }, [pageSelector])
 
     return (
