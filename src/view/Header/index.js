@@ -23,9 +23,6 @@ function Header() {
         if (querySearch.trim().length > 0) {
             navigate(`/search?q=${querySearch}`)
         }
-        else {
-            navigate('/')
-        }
     }, [querySearch])
 
 
@@ -130,7 +127,7 @@ function Header() {
                                     {
                                         loginList.isLoggedIn &&
                                         <li className='user_control_dropdown_list_item'>
-                                            <Link to='/admin?page=1'>
+                                            <Link to='/admin'>
                                                 Admin
                                             </Link>
                                         </li>

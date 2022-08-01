@@ -6,7 +6,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import './style.scss'
 import { movieActions } from '../../redux/slice/movieSlice'
-import { loginSelector, movieSelector, totalPage, currentPageSelector } from '../../redux/selector'
+import { loginSelector, movieSelector, totalPage, currentPageSelector, isFetchingMovieSelector } from '../../redux/selector'
 import ModalEditMovie from '../components/ModalEditMovie'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -19,11 +19,11 @@ function Admin() {
     const query = new URLSearchParams(location.search)
     const qPage = query.get("page")
 
-    const userSelector = useSelector(loginSelector)
     const movieList = useSelector(movieSelector)
     const totalPageSelector = useSelector(totalPage)
+    const isFetchingMovie = useSelector(isFetchingMovieSelector)
 
-    const [currentPage, setCurrentPage] = useState(parseInt(qPage))
+    const [currentPage, setCurrentPage] = useState(qPage ? parseInt(qPage) : 1)
     const pageSelector = useSelector(currentPageSelector)
 
     const [isShowModal, setShowModal] = useState(false)
@@ -80,12 +80,12 @@ function Admin() {
         }
 
         dispatch(movieActions.getMovie(formData));
-    }, [userSelector.isLoggedIn]);
+    }, []);
 
 
     useEffect(() => {
         setCurrentPage(parseInt(pageSelector))
-        navigate(`/admin?page=${pageSelector}`)
+
     }, [pageSelector])
 
     return (
@@ -146,13 +146,22 @@ function Admin() {
                             ))
                         }
                     </ul>
+                    {
+                        isFetchingMovie === false && movieList.length === 0 &&
+                        <div className="movie_empty">
+                            <p>Rất tiếc danh sách phim trống!</p>
+                        </div>
+                    }
                 </div>
                 <div className="movie_footer">
-                    <Pagination count={totalPageSelector} color="primary"
-                        size="medium"
-                        onChange={(event, pageNumber) => handleChangePaginate(event, pageNumber)}
-                        page={currentPage}
-                    />
+                    {
+                        (parseInt(pageSelector) <= totalPageSelector) &&
+                        <Pagination count={totalPageSelector} color="primary"
+                            size="medium"
+                            onChange={(event, pageNumber) => handleChangePaginate(event, pageNumber)}
+                            page={currentPage}
+                        />
+                    }
                 </div>
             </div>
             {

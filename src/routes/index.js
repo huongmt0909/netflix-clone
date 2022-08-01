@@ -11,7 +11,6 @@ const routeAdmin = [
         id: 1,
         path: '/search',
         component: <Search />
-    },
-    
+    }
 ]
 export default routeAdmin

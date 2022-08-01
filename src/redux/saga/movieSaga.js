@@ -2,6 +2,7 @@ import { fork, select, take, call, put, all, takeEvery } from "redux-saga/effect
 import { movieActions } from "../slice/movieSlice";
 import { getAll, create, update, remove } from '../../services/movieServices'
 import { currentPageSelector, movieSelector, totalPage } from '../selector'
+import History from "../../utils/history";
 
 
 function* handleGetMovie(action) {
@@ -85,6 +86,7 @@ function* handleRemoveMovie(action) {
                 if (movieList.length === 0) {
                     currentPage = currentPage - 1
                     totalPageSelector = totalPageSelector - 1
+                    yield History.navigate(`/admin?page=${currentPage}`);
                 }
                 yield put(movieActions.setTotalPage(totalPageSelector))
                 yield put(movieActions.setCurrentPage(currentPage))
