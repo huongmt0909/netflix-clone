@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import './style.scss'
 import { movieActions } from '../../redux/slice/movieSlice'
-import { loginSelector, movieSelector, totalPage , currentPageSelector} from '../../redux/selector'
+import { loginSelector, movieSelector, totalPage, currentPageSelector } from '../../redux/selector'
 import ModalEditMovie from '../components/ModalEditMovie'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -141,7 +141,7 @@ function Admin() {
                     <Pagination count={totalPageSelector} color="primary"
                         size="medium"
                         onChange={(event, pageNumber) => handleChangePaginate(event, pageNumber)}
-                        page={parseInt(pageSelector) !== currentPage ? currentPage : parseInt(pageSelector)}
+                        page={currentPage}
                     />
                 </div>
             </div>
