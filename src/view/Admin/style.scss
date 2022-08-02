@@ -1,0 +1,139 @@
+@import "../../assets/globalStyles/base.scss";
+
+.admin {
+    display: flex;
+    justify-content: center;
+    padding-top: 12rem;
+    &_container {
+        width: 80vw;
+        background-color: $color-6;
+        padding: 12px;
+    }
+    &_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h1 {
+            color: $color-9;
+        }
+        button {
+            height: 35px;
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            color: $color-3;
+            background-color: $color-13;
+            cursor: pointer;
+            outline: none;
+            border: none;
+            padding: 0 8px;
+            border-radius: 4px;
+            &:hover {
+                background-color: $color-14;
+            }
+            i {
+                margin-right: 8px;
+                font-size: 1.4rem;
+            }
+        }
+    }
+}
+
+.movie_table {
+    box-shadow: 1px 1px 2px rgba(1, 1, 1, 15%);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    &_row {
+        display: flex;
+        justify-content: space-between;
+    }
+    &_col {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 8px;
+        h2 {
+            color: $color-9;
+            text-align: center;
+        }
+        &:nth-child(1) {
+            width: 40%;
+        }
+        width: 20%;
+        p {
+            font-size: 1.4rem;
+        }
+        &_img {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            img {
+                width: 100%;
+                height: auto;
+                max-height: 100%;
+            }
+        }
+    }
+    &_header {
+        border: 1px solid $color-4;
+    }
+    &_body {
+        border-bottom: 1px solid $color-4;
+        border-right: 1px solid $color-4;
+        border-left: 1px solid $color-4;
+    }
+    .table_control {
+        button {
+            width: 30px;
+            height: 30px;
+            margin-left: 12px;
+            border-radius: 4px;
+            color: $color-3;
+            cursor: pointer;
+        }
+        .btn-show {
+            background-color: $color-15;
+            &:hover {
+                background-color: $color-16;
+            }
+        }
+        .btn-update {
+            background-color: $color-18;
+            &:hover {
+                background-color: $color-19;
+            }
+        }
+        .btn-remove {
+            background-color: #dc3545;
+            &:hover {
+                background-color: $color-19;
+            }
+        }
+    }
+}
+.movie_footer{
+    margin-top: 22px;
+    display: flex;
+    justify-content: flex-end;
+    nav{
+        ul{
+            li{
+                button{
+                    font-size: 1.4rem;
+                }
+            }
+        }
+    }
+}
+.movie_empty{
+    display: flex;
+    justify-content: center;
+    height: 200px;
+    align-items: center;
+    p{
+        font-size: 1.6rem;
+    }
+}
